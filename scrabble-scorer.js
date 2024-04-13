@@ -39,8 +39,26 @@ function initialPrompt(word) {   //Task:1 User inputs word
 };
 console.log(oldScrabbleScorer(initialPrompt())) //Task:1 Print scores after word
 
-//Original code bellow
-let simpleScorer;
+//Task: 2 New Scoringing Algorithms  declerations
+let word = (initialPrompt())
+// Task:2 New scoring algorithms
+
+function simpleScorer(SimpleScoreWord) {
+   word = word.toUpperCase(); 
+   pointValue = 1
+   let score = ''
+   const alpha = ['A','E','I','O','U','B','C','D','E','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Y'];
+      for (let i = 0; i < word.length; i++) {
+        if (alpha.includes(word[i])) {
+          score += `Points for '${word[i]}': ${pointValue}\n`
+      }
+   }
+   return score
+}
+
+console.log(simpleScorer())
+//Original code declerations
+// let simpleScorer;
 let vowelBonusScorer;
 let scrabbleScorer;
 let newPointStructure;
@@ -50,7 +68,7 @@ function scorerPrompt() {}
 function transform() {};
 
 function runProgram() {
-   initialPrompt();
+   // initialPrompt();
 }
 
 // Don't write any code below this line //
