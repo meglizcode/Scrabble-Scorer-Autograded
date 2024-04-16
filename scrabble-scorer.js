@@ -32,43 +32,86 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
-function initialPrompt(word) {   //Task:1 User inputs word
+function initialPrompt() {   //Task:1 User inputs word
    console.log("Let's play some scrabble!");
-   word = input.question(`Enter a word: `); 
+   let word = input.question(`Enter a word: `); 
    return word;
 };
-console.log(oldScrabbleScorer(initialPrompt())) //Task:1 Print scores after word
+// console.log(oldScrabbleScorer(initialPrompt())) //Task:1 Print scores after word
 
-//Task: 2 New Scoringing Algorithms  declerations
-let word = (initialPrompt())
 // Task:2 New scoring algorithms
-
-function simpleScorer(SimpleScoreWord) {
-   word = word.toUpperCase(); 
-   pointValue = 1
-   let score = ''
-   const alpha = ['A','E','I','O','U','B','C','D','E','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Y'];
-      for (let i = 0; i < word.length; i++) {
-        if (alpha.includes(word[i])) {
-          score += `Points for '${word[i]}': ${pointValue}\n`
-      }
-   }
-   return score
+function simpleScorer(simpleScoreWord) {
+   let score = simpleScoreWord.length;
+   return score;
 }
 
-console.log(simpleScorer())
+function vowelBonusScorer(vowelWordBonus) {
+   vowelWordBonus = vowelWordBonus.toUpperCase();
+  
+   let score = 0
+   const vowel = ['A','E','I','O','U',];
+     
+   for (let i = 0; i < vowelWordBonus.length; i++) {
+        if (vowel.includes(vowelWordBonus[i])) {
+          score += 3;
+      } else {
+         score++;
+      }
+   }
+   return score;
+}
+
 //Original code declerations
-// let simpleScorer;
-let vowelBonusScorer;
 let scrabbleScorer;
 let newPointStructure;
-const scoringAlgorithms = [];
 
-function scorerPrompt() {}
+let simpleScoreDetails = {
+   name: 'Simple Score',
+   description:'Each Letter is worth 1 point.',
+   scoringFunction: 'A function with a parameter for user input that returns a score',
+};
+
+let bonusVowelDetails = {
+   name: 'Bonus Vowels',
+   description:'Vowels are 3 pts, consonants are 1 pt.',
+   scoringFunction: 'A function that returns a score based on the number of vowels and consonants.',
+};
+
+let classicScrabbleDetails = {
+   name: 'Scrabble',
+   description:'The traditional scoring algorithm.',
+   scoringFunction: 'Uses the oldScrabbleScorer() function to determine the score for a given word.',
+};
+
+// Task 2:Object Array with fuction detials
+const scoringAlgorithms = [simpleScoreDetails,bonusVowelDetails,classicScrabbleDetails];
+
+function scorerPrompt(ScorcerSelection) {
+   console.log(`\nThe following options are different ways your word can be scored.\nPlease use a number to make a following selection. \n\n 0: ${simpleScoreDetails.name} : ${simpleScoreDetails.description} \n 1: ${bonusVowelDetails.name}: ${bonusVowelDetails.description}\n 2: ${classicScrabbleDetails.name}: ${classicScrabbleDetails.description} \n`)
+   let selction = input.question('Enter 0, 1, or 2: ')
+   return selction
+}
+
 function transform() {};
 
 function runProgram() {
-   // initialPrompt();
+   let userInputedWord = initialPrompt();
+
+   let simpleScoreInputedWord = simpleScorer(userInputedWord) 
+   let vowlBonusInputedWord = vowelBonusScorer(userInputedWord)
+   let ogScrabbleInputedWord = oldScrabbleScorer(userInputedWord)
+
+   let scorerChoice = scorerPrompt();
+
+   if (scorerChoice == 0) {
+         console.log(`Score for "${userInputedWord}": ${simpleScoreInputedWord}`);
+   } else if (scorerChoice == 1){
+      console.log(`Score for "${userInputedWord}": ${vowlBonusInputedWord}`);
+   } else if (scorerChoice == 2) {
+      console.log(`Score for "${userInputedWord}": ${ogScrabbleInputedWord}`)
+   }
+
+   // console.log(vowlBonusInputedWord)
 }
 
 // Don't write any code below this line //
