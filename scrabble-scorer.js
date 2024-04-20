@@ -28,11 +28,11 @@ function oldScrabbleScorer(word) {
 	}
 	return letterPoints;
  }
-
-// your job is to finish writing these functions and variables that we've named //
-// don't change the names or your program won't work as expected. //
-
-function initialPrompt() {   //Task:1 User inputs word
+ 
+ // your job is to finish writing these functions and variables that we've named //
+ // don't change the names or your program won't work as expected. //
+ 
+ function initialPrompt() {   //Task:1 User inputs word
    console.log("Let's play some scrabble!");
    let word = input.question(`Enter a word: `); 
    return word;
@@ -47,13 +47,13 @@ function simpleScorer(simpleScoreWord) {
 
 function vowelBonusScorer(vowelWordBonus) {
    vowelWordBonus = vowelWordBonus.toUpperCase();
-  
+   
    let score = 0
    const vowel = ['A','E','I','O','U',];
-     
+   
    for (let i = 0; i < vowelWordBonus.length; i++) {
-        if (vowel.includes(vowelWordBonus[i])) {
-          score += 3;
+      if (vowel.includes(vowelWordBonus[i])) {
+         score += 3;
       } else {
          score++;
       }
@@ -63,13 +63,13 @@ function vowelBonusScorer(vowelWordBonus) {
 
 //Original code declerations
 let scrabbleScorer;
-let newPointStructure;
-
+let newPointStructure = {a:[],b:[],c:[],d:[],e:[],f:[],g:[],h:[],i:[],j:[],k:[],l:[],m:[],n:[],o:[],p:[],q:[],r:[],s:[],t:[],u:[],v:[],w:[],x:[],y:[],z:[]}
 let simpleScoreDetails = {
    name: 'Simple Score',
    description:'Each Letter is worth 1 point.',
    scoringFunction: 'A function with a parameter for user input that returns a score',
 };
+
 
 let bonusVowelDetails = {
    name: 'Bonus Vowels',
@@ -92,7 +92,22 @@ function scorerPrompt(ScorcerSelection) {
    return selction
 }
 
-function transform() {};
+function transform(oldPointStructure) 
+{
+   let newPointScore = []
+
+   for (let key in oldPointStructure) 
+   {
+      for (let i = 0; i < key.length; i++) 
+      {
+         key = key[i].toLocaleLowerCase.push
+      if (newPointStructure.key == oldPointStructure.key[i])
+      newPointScore = oldPointStructure[key][i].push
+      } 
+   } return newPointScore
+};
+console.log(transform(oldPointStructure[1],[2]))
+
 
 function runProgram() {
    let userInputedWord = initialPrompt();
