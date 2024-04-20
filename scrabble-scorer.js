@@ -63,7 +63,7 @@ function vowelBonusScorer(vowelWordBonus) {
 
 //Original code declerations
 let scrabbleScorer;
-let newPointStructure = {a:[],b:[],c:[],d:[],e:[],f:[],g:[],h:[],i:[],j:[],k:[],l:[],m:[],n:[],o:[],p:[],q:[],r:[],s:[],t:[],u:[],v:[],w:[],x:[],y:[],z:[]}
+let newPointStructure = [];
 let simpleScoreDetails = {
    name: 'Simple Score',
    description:'Each Letter is worth 1 point.',
@@ -101,12 +101,12 @@ function transform(oldPointStructure)
       for (let i = 0; i < key.length; i++) 
       {
          key = key[i].toLocaleLowerCase.push
-      if (newPointStructure.key == oldPointStructure.key[i])
+      if (userInputedWord == oldPointStructure.key[i])
       newPointScore = oldPointStructure[key][i].push
       } 
    } return newPointScore
 };
-console.log(transform(oldPointStructure[1],[2]))
+
 
 
 function runProgram() {
@@ -117,7 +117,7 @@ function runProgram() {
    let ogScrabbleInputedWord = oldScrabbleScorer(userInputedWord)
 
    let scorerChoice = scorerPrompt();
-
+console.log(transform(userInputedWord))
    if (scorerChoice == 0) {
          console.log(`Score for "${userInputedWord}": ${simpleScoreInputedWord}`);
    } else if (scorerChoice == 1){
