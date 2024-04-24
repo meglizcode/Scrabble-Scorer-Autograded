@@ -63,7 +63,7 @@ function vowelBonusScorer(vowelWordBonus) {
 
 //Original code declerations
 let scrabbleScorer;
-let newPointStructure = [];
+let newPointStructure = {"a":1, "b":3,  "c":3, "d":2, "e":1, "f":4, "g":2, "h":4, "i":1, "j":8, "k":5, "l":1, "m":3, "n":1, "o":1, "p":3, "q":10, "r":1, "s":1, "t":1, "u":1, "v":4, "w":4, "x":8, "y":4, "z":10};
 let simpleScoreDetails = {
    name: 'Simple Score',
    description:'Each Letter is worth 1 point.',
@@ -94,19 +94,21 @@ function scorerPrompt(ScorcerSelection) {
 
 function transform(oldPointStructure) 
 {
-   let newPointScore = []
+   let newPointScore = {};
 
-   for (let key in oldPointStructure) 
-   {
-      for (let i = 0; i < key.length; i++) 
-      {
-         key = key[i].toLocaleLowerCase.push
-      if (userInputedWord == oldPointStructure.key[i])
-      newPointScore = oldPointStructure[key][i].push
-      } 
+   for (let key in oldPointStructure) { 
+
+    for (let i = 0; i <= oldPointStructure[key].length; i++){
+      newPointScore[oldPointStructure[1][i]] = 1
+      newPointScore[oldPointStructure[2][i]] = 2
+      newPointScore[oldPointStructure[3][i]] = 3
+      newPointScore[oldPointStructure[4][i]] = 4
+      newPointScore[oldPointStructure[5][i]] = 5
+      newPointScore[oldPointStructure[8][i]] = 8
+      newPointScore[oldPointStructure[10][i]] = 10
+   }
    } return newPointScore
 };
-
 
 
 function runProgram() {
@@ -115,9 +117,10 @@ function runProgram() {
    let simpleScoreInputedWord = simpleScorer(userInputedWord) 
    let vowlBonusInputedWord = vowelBonusScorer(userInputedWord)
    let ogScrabbleInputedWord = oldScrabbleScorer(userInputedWord)
+console.log(transform(oldPointStructure))
 
    let scorerChoice = scorerPrompt();
-console.log(transform(userInputedWord))
+   
    if (scorerChoice == 0) {
          console.log(`Score for "${userInputedWord}": ${simpleScoreInputedWord}`);
    } else if (scorerChoice == 1){
