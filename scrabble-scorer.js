@@ -69,7 +69,7 @@ function scrabbleScorer(word) {
 	for (let i = 0; i < word.length; i++) {
       let key = 0
       let lettersGraded = newPointStructure[key][i]
-      
+
 		 if (lettersGraded.includes(word[i])) {
 			letterPoints += `Points for '${word[i]}': ${newPointStructure[key]}\n`
 		 key++
@@ -103,7 +103,7 @@ let classicScrabbleDetails = {
 };
 
 // Task 2:Object Array with fuction detials
-const scoringAlgorithms = [simpleScoreDetails,bonusVowelDetails,classicScrabbleDetails];
+const scoringAlgorithms = [simpleScorer,vowelBonusScorer,scrabbleScorer];
 
 function scorerPrompt(ScorcerSelection) {
    console.log(`\nThe following options are different ways your word can be scored.\nPlease use a number to make a following selection. \n\n 0: ${simpleScoreDetails.name} : ${simpleScoreDetails.description} \n 1: ${bonusVowelDetails.name}: ${bonusVowelDetails.description}\n 2: ${classicScrabbleDetails.name}: ${classicScrabbleDetails.description} \n`)
