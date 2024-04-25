@@ -62,8 +62,27 @@ function vowelBonusScorer(vowelWordBonus) {
 }
 
 //Original code declerations
-let scrabbleScorer;
-let newPointStructure = {"a":1, "b":3,  "c":3, "d":2, "e":1, "f":4, "g":2, "h":4, "i":1, "j":8, "k":5, "l":1, "m":3, "n":1, "o":1, "p":3, "q":10, "r":1, "s":1, "t":1, "u":1, "v":4, "w":4, "x":8, "y":4, "z":10};
+
+function scrabbleScorer(word) {
+	let letterPoints = "";
+ 
+	for (let i = 0; i < word.length; i++) {
+      let key = 0
+      let lettersGraded = newPointStructure[key][i]
+      
+		 if (lettersGraded.includes(word[i])) {
+			letterPoints += `Points for '${word[i]}': ${newPointStructure[key]}\n`
+		 key++
+      }
+
+ 
+	  }	return letterPoints;
+	}
+
+ 
+
+let newPointStructure = transform(oldPointStructure)
+
 let simpleScoreDetails = {
    name: 'Simple Score',
    description:'Each Letter is worth 1 point.',
@@ -97,15 +116,10 @@ function transform(oldPointStructure)
    let newPointScore = {};
 
    for (let key in oldPointStructure) { 
-
-    for (let i = 0; i <= oldPointStructure[key].length; i++){
-      newPointScore[oldPointStructure[1][i]] = 1
-      newPointScore[oldPointStructure[2][i]] = 2
-      newPointScore[oldPointStructure[3][i]] = 3
-      newPointScore[oldPointStructure[4][i]] = 4
-      newPointScore[oldPointStructure[5][i]] = 5
-      newPointScore[oldPointStructure[8][i]] = 8
-      newPointScore[oldPointStructure[10][i]] = 10
+      let letterKeys = oldPointStructure[key]
+    for (let i = 0; i < letterKeys.length; i++){
+      let littleLetter = letterKeys[i].toLowerCase();
+      newPointScore[littleLetter] = Number(key)
    }
    } return newPointScore
 };
@@ -116,7 +130,7 @@ function runProgram() {
 
    let simpleScoreInputedWord = simpleScorer(userInputedWord) 
    let vowlBonusInputedWord = vowelBonusScorer(userInputedWord)
-   let ogScrabbleInputedWord = oldScrabbleScorer(userInputedWord)
+   let scrabbleInputedWord = scrabbleScorer(userInputedWord)
 console.log(transform(oldPointStructure))
 
    let scorerChoice = scorerPrompt();
@@ -126,7 +140,7 @@ console.log(transform(oldPointStructure))
    } else if (scorerChoice == 1){
       console.log(`Score for "${userInputedWord}": ${vowlBonusInputedWord}`);
    } else if (scorerChoice == 2) {
-      console.log(`Score for "${userInputedWord}": ${ogScrabbleInputedWord}`)
+      console.log(`Score for "${userInputedWord}": ${scrabbleInputedWord}`)
    }
 
    // console.log(vowlBonusInputedWord)
