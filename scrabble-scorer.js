@@ -92,7 +92,11 @@ function scorerPrompt(ScorcerSelection) {
    return selction
 }
 
-function transform() {};
+function transform() {
+   for (let alpha in oldPointStructure) {
+      
+   }
+};
 
 function runProgram() {
    let userInputedWord = initialPrompt();
